@@ -6,6 +6,8 @@ Description: Add Customize options to the <a href="http://wordpress.org/extend/t
 Version: 1.0
 Author: Brainstorm Media
 Author URI: http://brainstormmedia.com
+
+Styles Class: Styles_Child_Theme
 */
 
 /**
@@ -29,5 +31,3 @@ Author URI: http://brainstormmedia.com
  * GNU General Public License for more details.
  * **********************************************************************
  */
-
-add_filter( 'styles_theme_plugins', create_function( '$theme', '$theme[] = basename( dirname( __FILE__ ) ); return $theme;' ) );
