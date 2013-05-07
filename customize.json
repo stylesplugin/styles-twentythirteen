@@ -12,7 +12,7 @@
 	],
 	"Header": [
 		/* Background */
-		{ "selector": "#page #masthead", "type": "background-color", "label": "Header" },
+		{ "selector": "#page #masthead", "type": "background-color", "label": "Header", "template": "$selector {background: $value url(); }" },
 		/* Title */
 		{ "selector": "#page .site-title", "type": "text", "label": "Title" },
 		{ "selector": "#page .site-title", "type": "color", "label": "Title", "important": true },
@@ -52,7 +52,7 @@
 		{ "selector": ".searchform [type=search], .site-header .searchform [type=search]:focus", "type": "border-color", "label": "Form" },
 		{}
 	],
-	"Sidebar – Main Widget Area": [
+	"Widgets – Footer": [
 		/* Background */
 		{ "selector": ".site-footer .sidebar-container", "type": "background-color", "label": "Area" },
 		/* Title */
@@ -66,7 +66,7 @@
 		{ "selector": "#secondary aside a:hover", "type": "color", "label": "Link" },
 		{}
 	],
-	"Sidebar – Secondary Widget Area": [
+	"Widgets – Sidebar": [
 		/* Background */
 		{ "selector": "#tertiary .widget", "type": "background-color", "label": "Area" },
 		/* Title */
