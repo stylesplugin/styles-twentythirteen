@@ -1,7 +1,9 @@
 {
 	"Global": [
 		/* Global */
+		{ "selector": "html,body", "type": "background-color", "label": "Outer area" },
 		{ "selector": "#page", "type": "background-color", "label": "Inner area" },
+		{ "selector": "#page", "type": "border-color", "label": "Inner area" },
 		{ "selector": "#page", "type": "text", "label": "Default" },
 		{ "selector": "#page", "type": "color", "label": "Default" },
 		/* Link */
