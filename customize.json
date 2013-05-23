@@ -19,9 +19,9 @@
 		{ "selector": "#page .site-title", "type": "text", "label": "Title" },
 		{ "selector": "#page .site-title", "type": "color", "label": "Title", "important": true },
 		{ "selector": "#page #masthead a:hover .site-title", "type": "color", "label": "Title", "important": true },
-		/* Description */
-		{ "selector": ".site-description", "type": "text", "label": "Description" },
-		{ "selector": ".site-description", "type": "color", "label": "Description", "important": true },
+		/* Tagline */
+		{ "selector": ".site-description", "type": "text", "label": "Tagline" },
+		{ "selector": ".site-description", "type": "color", "label": "Tagline", "important": true },
 		{}
 	],
 	"Menu – Primary": [
