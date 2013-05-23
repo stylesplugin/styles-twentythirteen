@@ -5,7 +5,7 @@ Author URI: http://brainstormmedia.com
 Tags: css, stylesheet, styles, appearance, customize, customizer, colors, color picker, images, image upload, background, fonts, google fonts, user interface
 Requires at least: 3.4
 Tested up to: 3.5.2
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Be creative with colors and fonts. Styles changes everything.
 
@@ -71,6 +71,9 @@ Maybe! We have additional themes available available at [StylesPlugin.com](http:
 No! Styles is very careful about only loading what is needed to get its job done. Once you're done editing, stylesheets are cached and loaded for your sites users as quickly as possible.
 
 == Changelog ==
+
+= 1.0.1 =
+Fix: Change "Description" to "Tagline" to match WordPress naming convention.
 
 = 1.0 =
 * Initial public release.
