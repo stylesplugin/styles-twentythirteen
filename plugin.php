@@ -7,6 +7,7 @@ Version: 1.0.1
 Author: Brainstorm Media
 Author URI: http://brainstormmedia.com
 
+Require: Styles 1.0.7
 Styles Class: Styles_Child_Theme
 */
 
@@ -31,3 +32,7 @@ Styles Class: Styles_Child_Theme
  * GNU General Public License for more details.
  * **********************************************************************
  */
+
+if ( !class_exists( 'Styles_Child_Notices' ) ) {
+    include dirname( __FILE__ ) . '/classes/styles-child-notices/styles-child-notices.php';
+}
