@@ -2,10 +2,10 @@
 Contributors: brainstormmedia, pdclark, elusivelight
 Plugin URI: http://stylesplugin.com
 Author URI: http://brainstormmedia.com
-Tags: css, stylesheet, styles, appearance, customize, customizer, colors, color picker, images, image upload, background, fonts, google fonts, user interface
+Tags: css, stylesheet, appearance, customize, customizer, colors, color picker, background, fonts, google fonts, user interface, 2013, twenty thirteen
 Requires at least: 3.4
 Tested up to: 3.5.2
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 Be creative with colors and fonts. Styles changes everything.
 
@@ -19,7 +19,7 @@ This plugin adds suport for the TwentyThirteen theme to the [Styles plugin](http
 
 WordPress has lots of beautiful themes, but personalizing a design can be difficult and time-intensive. Styles changes that. Styles gives you creative control in one consistent interface – the WordPress theme customizer. Styles lets you make your site your own. :)
 
-**Features of the plugin include:**
+**Features of the plugin**
 
 * Instant previews
 * Text size
@@ -33,12 +33,24 @@ WordPress has lots of beautiful themes, but personalizing a design can be diffic
 
 Styles and options for all built-in WordPress themes are free. More themes are available at [StylesPlugin.com](http://stylesplugin.com).
 
-**Free Themes include:**
+**Free Themes**
 
-* TwentyTen: [Plugin](http://wordpress.org/extend/plugins/styles-twentyten), [Demo](http://demo.stylesplugin.com/twentyten)
-* TwentyEleven: [Plugin](http://wordpress.org/extend/plugins/styles-twentyeleven), [Demo](http://demo.stylesplugin.com/twentyeleven)
-* TwentyTwelve: [Plugin](http://wordpress.org/extend/plugins/styles-twentytwelve), [Demo](http://demo.stylesplugin.com/twentytwelve)
-* TwentyThirteen: [Plugin](http://wordpress.org/extend/plugins/styles-twentythirteen), [Demo](http://demo.stylesplugin.com/twentythirteen)
+* TwentyTen: [Demo](http://demo.stylesplugin.com/twentyten)
+* TwentyEleven: [Demo](http://demo.stylesplugin.com/twentyeleven)
+* TwentyTwelve: [Demo](http://demo.stylesplugin.com/twentytwelve)
+* TwentyThirteen: [Demo](http://demo.stylesplugin.com/twentythirteen)
+
+**Developer Resources**
+
+* [Styles on Github](https://github.com/stylesplugin)
+* [Brainstorm Media on Github](https://github.com/brainstormmedia)
+* Code Walkthrough: [How to add support for your own themes](http://www.youtube.com/playlist?list=PLxj61Fojm1RGevBh10U2qCqjwoH4Awo-P)
+
+**Contact**
+
+* [@stylesplugin](http://twitter.com/stylesplugin) on Twitter
+* [Review Styles](http://wordpress.org/support/view/plugin-reviews/styles)
+* [Get support](http://wordpress.org/support/plugin/styles)
 
 == Installation ==
 
@@ -64,7 +76,13 @@ We believe life is better when we work together. :) Support for WordPress defaul
 
 = Does Styles support my theme? =
 
-Maybe! We have additional themes available available at [StylesPlugin.com](http://stylesplugin.com). If you don't find your theme there, we also have documentation on how to create options using styles available for developers. Adding one option takes only one line of code.
+Maybe! We have additional themes available available at [StylesPlugin.com](http://stylesplugin.com). If you don't find your theme there, [watch this walkthrough](http://www.youtube.com/playlist?list=PLxj61Fojm1RGevBh10U2qCqjwoH4Awo-P) for a developer's guide on how to add support. Adding one option takes only one line of code.
+
+= I'd like to distribute a theme add-on I created for Styles =
+
+If you [watched the walkthrough](http://www.youtube.com/playlist?list=PLxj61Fojm1RGevBh10U2qCqjwoH4Awo-P) and created an add-on for Styles, please share it with others. It's our goal to make the lives of theme developers and end-users much, much easier.
+
+If you would like to sell your add-on at [stylesplugin.com](http://stylesplugin.com), get in touch! Email us at `styles (at) stylesplugin.com` or find us on Twitter as [@stylesplugin](http://twitter.com/stylesplugin).
 
 = Will this plugin slow down my site? =
 
@@ -72,8 +90,19 @@ No! Styles is very careful about only loading what is needed to get its job done
 
 == Changelog ==
 
+= 1.0.2 =
+* Fix: Live updates for settings that require "!important". Requires Styles 1.0.7.
+* Add: Notice if users don't have Styles 1.0.7 or higher installed.
+* Add: Guide new users to install Styles if this add-on is installed, but Styles is not.
+
 = 1.0.1 =
 Fix: Change "Description" to "Tagline" to match WordPress naming convention.
 
 = 1.0 =
 * Initial public release.
+
+== Upgrade Notice ==
+
+* Fix: Live updates for settings that require "!important". Requires Styles 1.0.7.
+* Add: Notice if users don't have Styles 1.0.7 or higher installed.
+* Add: Guide new users to install Styles if this add-on is installed, but Styles is not.
