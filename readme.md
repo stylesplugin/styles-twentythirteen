@@ -54,11 +54,11 @@ We can freely commit our fixes to the sub-project in our local working directory
 
 When it’s time to contribute back to the upstream project we need to fork the project and add it as another remote:
 
-    git remote add styles-child-notices git@github.com:stylesplugin/styles-child-notices.git
+    git remote add pdclark-child-notices git@github.com:stylesplugin/pdclark-child-notices.git
 
 Now we can use the subtree push command like the following:
 
-    git subtree push --prefix=classes/styles-child-notices/ durdn-vim-surround master
+    git subtree push --prefix=classes/styles-child-notices/ pdclark-child-notices master
 
     git push using:  styles-child-notices master
     Counting objects: 5, done.
