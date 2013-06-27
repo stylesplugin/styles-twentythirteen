@@ -12,7 +12,7 @@ class Styles_Child_Notices {
 	/**
 	 * Version of this Styles_Child_Notices class
 	 */
-	var $version = '1.0';
+	var $version = '1.1';
 
 	/**
 	 * Store array of plugin requirements, each containing keys:
@@ -138,27 +138,42 @@ class Styles_Child_Notices {
 	 */
 	public function install_notice() {
 		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
+			|| 'delete-selected' == $_GET['action']
 			|| !current_user_can('install_plugins')
 		) {
 			return false;
 		}
 
-		foreach ( $this->requirements as $values ) {
-			$child_name = $child_file = $required_name = $required_slug = $required_file = '';
-			extract( $values, EXTR_IF_EXISTS );
+		// Display notices, combining multiple upgrade requests for one plugin into a single notice
+		foreach ( $this->get_install_notices_by_plugin() as $plugin => $messages ) {
+			$child_name = $child_file = $required_name = $required_slug = $required_file = $required_version = $actual_version = $url = '';
+			extract( $messages[0], EXTR_IF_EXISTS );
 
-			if ( !is_dir( WP_PLUGIN_DIR . '/' . $required_slug ) ) {
-				// Plugin not installed
-				$url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $required_slug), 'install-plugin_' . $required_slug );
-				$this->notices[] = "<p>To add theme options with <strong>$child_name</strong>, please <a href='$url'>install $required_name</a>.</p>";
+			if ( count( $messages ) > 1 ) {
+				// Multiple plugins requesting an upgrade -- combine into one notice
+				$requesting_plugins = $this->pluck_and_concatenate_requesting_plugins( $messages );
+
+				$this->notices[ "upgrade-$required_name" ] = "<p>$requesting_plugins require <strong>$required_name</strong> be installed. Please <a href='$url'>install $required_name</a>.</p>";
+			}else {
+				// Single request for upgrade
+				$this->notices[ "upgrade-$required_name" ] = "<p><strong>$child_name</strong> requires $required_name be installed. Please <a href='$url'>install $required_name</a>.</p>";
 			}
+			
 		}
+
 	}
 
 	/**
 	 * Display notice if plugin for this theme is installed, but not activated.
 	 */
 	public function activate_notice() {
+		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
+			|| 'delete-selected' == $_GET['action']
+			|| !current_user_can('install_plugins')
+		) {
+			return false;
+		}
+
 		foreach ( $this->requirements as $plugin ) {
 			$child_name = $child_file = $required_name = $required_slug = $required_file = '';
 			extract( $plugin, EXTR_IF_EXISTS );
@@ -166,7 +181,7 @@ class Styles_Child_Notices {
 			if ( is_dir( WP_PLUGIN_DIR . '/' . $required_slug ) ) {
 				if ( is_plugin_inactive( $required_file ) ) {
 					$url = wp_nonce_url(self_admin_url('plugins.php?action=activate&plugin=' . $required_file ), 'activate-plugin_' . $required_file );
-					$this->notices[] = "<p><strong>$required_name</strong> is installed, but not active. Please <a href='$url'>activate $required_name</a>.</p>";
+					$this->notices[ "activate-$required_name" ] = "<p><strong>$required_name</strong> is installed, but not active. Please <a href='$url'>activate $required_name</a>.</p>";
 				}
 			}
 
@@ -178,25 +193,110 @@ class Styles_Child_Notices {
 	 */
 	public function upgrade_notice() {
 		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
+			|| 'delete-selected' == $_GET['action']
 			|| !current_user_can('install_plugins')
 		) {
 			return false;
 		}
 
+		// Display notices, combining multiple upgrade requests for one plugin into a single notice
+		foreach ( $this->get_upgrade_notices_by_plugin() as $plugin => $messages ) {
+			$child_name = $child_file = $required_name = $required_slug = $required_file = $required_version = $actual_version = $url = '';
+			extract( $messages[0], EXTR_IF_EXISTS );
+
+			if ( count( $messages ) > 1 ) {
+				// Multiple plugins requesting an upgrade -- combine into one notice
+				$requesting_plugins = $this->pluck_and_concatenate_requesting_plugins( $messages );
+
+				$this->notices[ "upgrade-$required_name" ] = "<p>$requesting_plugins require <strong>$required_name</strong> be upgraded for all features to work correctly. Please <a href='$url'>upgrade $required_name</a>.</p>";
+			}else {
+				// Single request for upgrade
+				$this->notices[ "upgrade-$required_name" ] = "<p><strong>$child_name</strong> requires $required_name version <strong>$required_version</strong> for all features to work correctly. You are running version <strong>$actual_version</strong>. Please <a href='$url'>upgrade $required_name</a>.</p>";
+			}
+			
+		}
+	}
+
+	/**
+	 * Check version requests from all plugins, then sort according to which plugins need upgrades.
+	 *
+	 * @see pluck_and_concatenate_requesting_plugins()
+	 * @return array
+	 */
+	public function get_upgrade_notices_by_plugin() {
+		$notices = array();
+
+		// Identify plugins that need to be upgraded according to child plugins
 		foreach ( $this->requirements as $values ) {
 			$child_name = $child_file = $required_name = $required_slug = $required_file = $required_version = $actual_version ='';
 			extract( $values, EXTR_IF_EXISTS );
 
-			if ( empty( $actual_version ) ) {
-				continue;
-			}
+			if ( empty( $actual_version ) ) { continue; }
 
 			if ( version_compare( $actual_version, $required_version, '<') ) {
-				$url = wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin=' . $required_file ), 'upgrade-plugin_' . $required_file );
-				$this->notices[] = "<p><strong>$child_name</strong> requires $required_name version <strong>$required_version</strong> for all features to work correctly. You are running version <strong>$actual_version</strong>. Please <a href='$url'>upgrade $required_name</a>.</p>";
+				$url = wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=' . $required_file ), 'upgrade-plugin_' . $required_file );
+
+				// We don't want to request one plugin be upgraded many times,
+				// so we'll reword multiple requests that one plugin be upgraded
+				// into single notices in $this->pluck_and_concatenate_requesting_plugins()
+				$notices[ $required_name ][] = compact( 'child_name', 'required_name', 'required_version', 'actual_version', 'url' );
 			}
 		}
 
+		return $notices;
+	}
+
+	/**
+	 * Check requirements from all plugins, then sort according to which plugins need to be installed.
+	 *
+	 * @see pluck_and_concatenate_requesting_plugins()
+	 * @return array
+	 */
+	public function get_install_notices_by_plugin() {
+		$notices = array();
+
+		foreach ( $this->requirements as $values ) {
+			$child_name = $child_file = $required_name = $required_slug = $required_file = '';
+			extract( $values, EXTR_IF_EXISTS );
+
+			if ( !is_dir( WP_PLUGIN_DIR . '/' . $required_slug ) ) {
+				// Plugin not installed
+				$url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $required_slug), 'install-plugin_' . $required_slug );
+				
+				// We don't want to request one plugin be installed many times,
+				// so we'll reword multiple requests that one plugin be upgraded
+				// into single notices in $this->pluck_and_concatenate_requesting_plugins()
+				$notices[ $required_name ][] = compact( 'child_name', 'required_name', 'required_version', 'actual_version', 'url' );
+			}
+		}
+
+		return $notices;
+	}
+
+	/**
+	 * Take an array of messages generated by many plugins all requesting the same plugin be upgrade.
+	 * Return a string with the names of those plugins listed.
+	 * Allows many notices requesting one plugin be upgraded to be combined into one notice.
+	 *
+	 * @return string
+	 */
+	public function pluck_and_concatenate_requesting_plugins( $messages ) {
+		// Get the plugin names
+		$requesting_plugins = wp_list_pluck( $messages, 'child_name' );
+
+		// Wrap plugin names in HTML
+		foreach ( $requesting_plugins as &$plugin ) {
+			$plugin = "<strong>$plugin</strong>";
+		}
+
+		$last_plugin = count( $requesting_plugins ) - 1;
+		$glue = ( $last_plugin > 1 ) ? ', ' : ' ';
+
+		// Concatenate plugin names into single string
+		$requesting_plugins[ $last_plugin ] = 'and ' . $requesting_plugins[ $last_plugin ];
+		$requesting_plugins = implode( $glue, $requesting_plugins );
+
+		return $requesting_plugins;
 	}
 
 	/**
@@ -212,7 +312,6 @@ class Styles_Child_Notices {
 	 * Output all notices in WP Customizer
 	 */
 	public function customize_notices() {
-
 		// Don't load these files if there aren't notices or Styles is active.
 		if ( empty( $this->notices ) || class_exists( 'Styles_Plugin' ) ) {
 			return;
