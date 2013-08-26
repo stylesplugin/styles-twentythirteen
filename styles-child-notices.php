@@ -12,7 +12,7 @@ class Styles_Child_Notices {
 	/**
 	 * Version of this Styles_Child_Notices class
 	 */
-	var $version = '1.1';
+	var $version = '1.1.1';
 
 	/**
 	 * Store array of plugin requirements, each containing keys:
@@ -117,6 +117,17 @@ class Styles_Child_Notices {
 		}
 	}
 
+	public function is_plugin_update_or_delete() {
+		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
+			|| ( isset( $_GET['action'] ) && 'delete-selected' == $_GET['action'] )
+			|| !current_user_can('install_plugins')
+		){
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	public function required_name( $meta ) {
 		$name = preg_replace( $this->regex_version_number, '', $meta['require'] );
 
@@ -137,10 +148,7 @@ class Styles_Child_Notices {
 	 * Display notice if required plugin needs to be installed.
 	 */
 	public function install_notice() {
-		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
-			|| 'delete-selected' == $_GET['action']
-			|| !current_user_can('install_plugins')
-		) {
+		if ( $this->is_plugin_update_or_delete() ) {
 			return false;
 		}
 
@@ -167,10 +175,7 @@ class Styles_Child_Notices {
 	 * Display notice if plugin for this theme is installed, but not activated.
 	 */
 	public function activate_notice() {
-		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
-			|| 'delete-selected' == $_GET['action']
-			|| !current_user_can('install_plugins')
-		) {
+		if ( $this->is_plugin_update_or_delete() ) {
 			return false;
 		}
 
@@ -192,10 +197,7 @@ class Styles_Child_Notices {
 	 * Display notice if required plugin needs to be upgraded.
 	 */
 	public function upgrade_notice() {
-		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
-			|| 'delete-selected' == $_GET['action']
-			|| !current_user_can('install_plugins')
-		) {
+		if ( $this->is_plugin_update_or_delete() ) {
 			return false;
 		}
 
