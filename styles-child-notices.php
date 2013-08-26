@@ -12,7 +12,7 @@ class Styles_Child_Notices {
 	/**
 	 * Version of this Styles_Child_Notices class
 	 */
-	var $version = '1.1';
+	var $version = '1.1.1';
 
 	/**
 	 * Store array of plugin requirements, each containing keys:
@@ -138,7 +138,7 @@ class Styles_Child_Notices {
 	 */
 	public function install_notice() {
 		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
-			|| 'delete-selected' == @$_GET['action']
+			|| ( isset( $_GET['action'] ) && 'delete-selected' == $_GET['action'] )
 			|| !current_user_can('install_plugins')
 		) {
 			return false;
@@ -168,7 +168,7 @@ class Styles_Child_Notices {
 	 */
 	public function activate_notice() {
 		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
-			|| 'delete-selected' == @$_GET['action']
+			|| ( isset( $_GET['action'] ) && 'delete-selected' == $_GET['action'] )
 			|| !current_user_can('install_plugins')
 		) {
 			return false;
@@ -193,7 +193,7 @@ class Styles_Child_Notices {
 	 */
 	public function upgrade_notice() {
 		if ( 'update.php' == basename( $_SERVER['PHP_SELF'] )
-			|| 'delete-selected' == @$_GET['action']
+			|| ( isset( $_GET['action'] ) && 'delete-selected' == $_GET['action'] )
 			|| !current_user_can('install_plugins')
 		) {
 			return false;
