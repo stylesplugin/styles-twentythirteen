@@ -263,7 +263,7 @@
 		/* Submit button */
 		{ "selector": "#respond input#submit", "type": "text", "label": "Submit button" },
 		{ "selector": "#respond input#submit", "type": "color", "label": "Submit button" },
-		{ "selector": "#respond input#submit", "type": "background-color", "label": "Submit button" },
+		{ "selector": "#respond input#submit", "type": "background-color", "label": "Submit button", "template": "$selector { background: $value url(); }" },
 		{ "selector": "#respond input#submit", "type": "border-color", "label": "Submit button" },
 		{}
 	],
