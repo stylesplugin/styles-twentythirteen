@@ -5,7 +5,7 @@ Author URI: http://brainstormmedia.com
 Tags: css, stylesheet, appearance, customize, customizer, colors, color picker, background, fonts, google fonts, user interface, 2013, twenty thirteen
 Requires at least: 3.4
 Tested up to: 3.6
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 
 Be creative with colors and fonts. Styles changes everything.
 
@@ -92,6 +92,10 @@ No! Styles is very careful about only loading what is needed to get its job done
 
 == Changelog ==
 
+= 1.0.5 =
+
+* Fix: Allow background-color of comment submit button to be changed. Thanks [@webblish](http://wordpress.org/support/profile/webblish) for the report.
+
 = 1.0.4 =
 
 * Fix: (Minor) Remove notices that would display in wp-admin if `WP_DEBUG` were enabled.
@@ -113,4 +117,4 @@ Fix: Change "Description" to "Tagline" to match WordPress naming convention.
 
 == Upgrade Notice ==
 
-* Fix: (Minor) Remove notices that would display in wp-admin if `WP_DEBUG` were enabled.
+* Fix: Allow background-color of comment submit button to be changed.
