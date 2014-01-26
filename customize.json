@@ -33,6 +33,9 @@
 		{ "selector": "#page .main-navigation li a:hover", "type": "color", "label": "Top item" },
 		{ "selector": ".main-navigation li a", "type": "background-color", "label": "Top item" },
 		{ "selector": ".main-navigation li > a:hover", "type": "background-color", "label": "Top item" },
+		/* Active */
+		{ "selector": "#page .main-navigation ul.nav-menu > li.current-menu-item > a", "type": "color", "label": "Top active item" },
+		{ "selector": "#page .main-navigation ul.nav-menu > li.current-menu-item > a", "type": "background-color", "label": "Top active item" },
 		/* Sub items */
 		{ "selector": "#page .main-navigation ul ul a", "type": "text", "label": "Submenu item" },
 		{ "selector": "#page .main-navigation li li a", "type": "color", "label": "Submenu item" },
@@ -41,6 +44,9 @@
 		{ "selector": ".main-navigation li li a:hover", "type": "background-color", "label": "Submenu item" },
 		/* Sub item border -- Specific to the this theme */
 		{ "selector": ".nav-menu .sub-menu, .nav-menu .children", "type": "border-color", "label": "Submenu item" },
+		/* Active */
+		{ "selector": "#page .main-navigation li li.current-menu-item > a", "type": "color", "label": "Submenu active item" },
+		{ "selector": "#page .main-navigation li li.current-menu-item > a", "type": "background-color", "label": "Submenu active item" },
 		{}
 	],
 	"Search Form": [
@@ -66,6 +72,17 @@
 		/* Link */
 		{ "selector": "#secondary aside a", "type": "color", "label": "Link" },
 		{ "selector": "#secondary aside a:hover", "type": "color", "label": "Link" },
+		/* Submit Button */
+		/* Uncomment the section below to enable submit button editing. */
+		/* This feature is experimental, and may not work for all widgets. */
+		/*
+		{ "selector": "#secondary input[type='submit']", "type": "color", "label": "Submit Button" },
+		{ "selector": "#secondary input[type='submit']", "type": "background-color", "label": "Submit Button", "template": "$selector { background: $value url(); }" },
+		{ "selector": "#secondary input[type='submit']", "type": "border-color", "label": "Submit Button" },
+		{ "selector": "#secondary input[type='submit']:hover", "type": "color", "label": "Submit Button" },
+		{ "selector": "#secondary input[type='submit']:hover", "type": "background-color", "label": "Submit Button", "template": "$selector { background: $value url(); }" },
+		{ "selector": "#secondary input[type='submit']:hover", "type": "border-color", "label": "Submit Button" },
+		*/
 		{}
 	],
 	"Widgets – Sidebar": [
@@ -80,6 +97,17 @@
 		/* Link */
 		{ "selector": "#tertiary aside a", "type": "color", "label": "Link" },
 		{ "selector": "#tertiary aside a:hover", "type": "color", "label": "Link" },
+		/* Submit Button */
+		/* Uncomment the section below to enable submit button editing. */
+		/* This feature is experimental, and may not work for all widgets. */
+		/*
+		{ "selector": "#tertiary input[type='submit']", "type": "color", "label": "Submit Button" },
+		{ "selector": "#tertiary input[type='submit']", "type": "background-color", "label": "Submit Button", "template": "$selector { background: $value url(); }" },
+		{ "selector": "#tertiary input[type='submit']", "type": "border-color", "label": "Submit Button" },
+		{ "selector": "#tertiary input[type='submit']:hover", "type": "color", "label": "Submit Button" },
+		{ "selector": "#tertiary input[type='submit']:hover", "type": "background-color", "label": "Submit Button", "template": "$selector { background: $value url(); }" },
+		{ "selector": "#tertiary input[type='submit']:hover", "type": "border-color", "label": "Submit Button" },
+		*/
 		{}
 	],
 	"Entry – Headings": [
