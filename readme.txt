@@ -1,5 +1,5 @@
 === Styles: TwentyThirteen ===
-Contributors: 10up, pdclark, elusivelight
+Contributors: pdclark, elusivelight
 Plugin URI: http://stylesplugin.com
 Author URI: http://pdclark.com
 Tags: css, stylesheet, appearance, customize, customizer, colors, color picker, background, fonts, google fonts, user interface, 2013, twenty thirteen

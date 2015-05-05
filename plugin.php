@@ -4,7 +4,7 @@ Plugin Name: Styles: TwentyThirteen
 Plugin URI: http://stylesplugin.com
 Description: Add Customize options to the <a href="http://wordpress.org/extend/themes/twentythirteen" target="_blank">TwentyThirteen theme</a> using the <a href="http://wordpress.org/extend/plugins/styles/" target="_blank">Styles plugin</a>.
 Version: 1.0.6
-Author: Paul Clark, 10up
+Author: Paul Clark
 Author URI: http://pdclark.com
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
